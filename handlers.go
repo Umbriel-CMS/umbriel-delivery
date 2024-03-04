@@ -13,8 +13,10 @@ func receiveDataHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
+	simplifiedBlocks := transformToSimplifiedBlocks(pageBlocks)
+
 	// serializing
-	jsonResponse, err := json.Marshal(pageBlocks)
+	jsonResponse, err := json.Marshal(simplifiedBlocks)
 	if err != nil {
 		http.Error(w, fmt.Sprintf("Error serializing page blocks to JSON: %v", err), http.StatusInternalServerError)
 		return
