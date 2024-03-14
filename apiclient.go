@@ -12,7 +12,7 @@ import (
 	"github.com/joho/godotenv"
 )
 
-func fetchPageBlocks() ([]PageBlock, error) {
+func fetchPageBlocks() ([]InputBlockData, error) {
 	err := godotenv.Load(".env")
 	if err != nil {
 		log.Fatalf("Error loading .env file: %s", err)
@@ -36,7 +36,7 @@ func fetchPageBlocks() ([]PageBlock, error) {
 		return nil, fmt.Errorf("error reading response body: %w", err)
 	}
 
-	var pageBlocks []PageBlock
+	var pageBlocks []InputBlockData
 	err = json.Unmarshal(bodyBytes, &pageBlocks)
 	if err != nil {
 		return nil, fmt.Errorf("error when parsing JSON: %w", err)
